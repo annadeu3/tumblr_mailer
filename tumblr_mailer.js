@@ -1,5 +1,6 @@
 var fs = require('fs');
-var ejs = require('ejs'); // loading EJS into our project
+var ejs = require('ejs'); // load EJS into our project
+var tumblr = require('tumblr.js');
 
 //to import contacts and email template
 var csvFile = fs.readFileSync("friend_list.csv", 'utf8');
@@ -27,6 +28,14 @@ function csvParse(file) {
 }
 
 var csvData = csvParse(csvFile);
+
+var customizedTemplate = ejs.render(emailTemplate, 
+                { firstName: firstName,  
+                  numMonthsSinceContact: numMonthsSinceContact
+                });
+
+
+
 
 //var fs = require('fs');
 

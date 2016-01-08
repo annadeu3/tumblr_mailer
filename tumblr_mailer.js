@@ -1,4 +1,5 @@
 var fs = require('fs');
+var ejs = require('ejs'); // loading EJS into our project
 
 //to import contacts and email template
 var csvFile = fs.readFileSync("friend_list.csv", 'utf8');

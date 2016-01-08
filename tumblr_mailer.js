@@ -1,15 +1,31 @@
 var fs = require('fs');
 
+//to import contacts and email template
 var csvFile = fs.readFileSync("friend_list.csv", 'utf8');
+var emailTemplate = fs.readFileSync('email_template', 'utf-8');
 
-function csvParse(csvFile) {
+function csvParse(file) {
 	//each line in the csvFile is a contact-> separate each one
 	//do not include the first line (header)
 	//use slice method to remove the header -> .slice(1)
-	var contacts = csvFile.split("\n").slice(1);
-
+	var lines = file.split("\n");
+	//isolate the keys in the header (line 1)
+	var key = lines[0].split(",");
+	lines.splice(0,1);
+	var arrayContacts = [];
+	var data = [];
+	for (var i = 0; i < lines.length; i++) {
+		var newObj = {};
+		arrayContacts = lines[i].split(",");
+		for (var j = 0; j < key.length; j++) {
+			newObj[key[j]] = arrayContacts[j];
+		}
+		data.push(newObj);
+		}
+	return data;
 }
 
+var csvData = csvParse(csvFile);
 
 //var fs = require('fs');
 

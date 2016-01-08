@@ -34,7 +34,12 @@ var customizedTemplate = ejs.render(emailTemplate,
                   numMonthsSinceContact: numMonthsSinceContact
                 });
 
-
+var client = tumblr.createClient({
+  consumer_key: 'iYPBFt5tZjt0zLaN2dgt2icTcrAcjCvdHVv1otFnXT0LC12MRT',
+  consumer_secret: '14lGsydgodg1iFMRMJelAVSHqh0HA1nnFQJkFC13kCLCu9SqKr',
+  token: 'eIhNkiEJqmipgSPEtWltBZkqUI8UzC7YZB5TwkvCKFxxJGytas',
+  token_secret: 'h20TYxkAhWyveCBluh1u0J846d4wczvKtMzOtDs746F649Bqfi'
+});
 
 
 //var fs = require('fs');

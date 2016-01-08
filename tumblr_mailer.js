@@ -29,11 +29,8 @@ function csvParse(file) {
 
 var csvData = csvParse(csvFile);
 
-var customizedTemplate = ejs.render(emailTemplate, 
-                { firstName: firstName,  
-                  numMonthsSinceContact: numMonthsSinceContact
-                });
 
+//tumblr authentication
 var client = tumblr.createClient({
   consumer_key: 'iYPBFt5tZjt0zLaN2dgt2icTcrAcjCvdHVv1otFnXT0LC12MRT',
   consumer_secret: '14lGsydgodg1iFMRMJelAVSHqh0HA1nnFQJkFC13kCLCu9SqKr',
@@ -41,6 +38,29 @@ var client = tumblr.createClient({
   token_secret: 'h20TYxkAhWyveCBluh1u0J846d4wczvKtMzOtDs746F649Bqfi'
 });
 
+client.posts('deuWhile.tumblr.com', function(err, blog){
+  var allPosts = blog.posts;
+  var latestPosts = within7Days(allPosts);
+
+  function within7Days() {
+  	var recent = [];
+  	for (var j = 0; j < posts.length; j++) {
+
+  	} 
+  }
+
+
+  for (var k = 0; k < csvData.legnth; k++) {
+  	var friendFirst = csvData[k].firstName;
+  	var lastContact = csvData[k].numMonthsSinceContact;
+	var customTemplate = ejs.render(emailTemplate, {
+        firstName: firstName,  
+     	numMonthsSinceContact: numMonthsSinceContact,
+        latestPosts: latestPosts
+        });
+	console.log(customTemplate);
+	}
+});
 
 //var fs = require('fs');
 

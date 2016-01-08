@@ -11,7 +11,11 @@
     <p>
       I've been blogging about my experiences at Grace Hopper on my blog. 
       Check out my new posts here: 
-      <a href="http://deuwhile.tumblr.com">My Blog</a>
+      <ul>
+      <% for(var i = 0; i < latestPosts.length; i++) {%>
+         <li><a href=<%= latestPosts[i].href %>> <%= latestPosts[i].title %></a>  </li>
+      <% } %>
+    </ul>
     </p>
     <p>
       Talk soon,<br>

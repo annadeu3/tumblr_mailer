@@ -40,20 +40,23 @@ var client = tumblr.createClient({
 
 client.posts('deuWhile.tumblr.com', function(err, blog){
   var allPosts = blog.posts;
-  var latestPosts = within7Days(allPosts);
+  var latestPosts = [];
 
-  function within7Days() {
-  	var recent = [];
-  	for (var j = 0; j < allPosts.length; j++) {
-  		var currentDate = new Date();
-  		
-  	} 
+  for (var j = 0; j < allPosts.length; j++) {
+  	var todaysDate = new Date();
+  	var postDate = new Date(blog.posts[j].date);
+
+  	//milliseconds in 7 weeks= 1000millisec*60sec*60min*24hr*7days
+  	if ((todaysDate.getTime() - postDate.getTime()) < (1000*60*60*24*7)) {
+  		latestPosts.push(blog.posts[j]);
+  	};
   }
 
 
   for (var k = 0; k < csvData.legnth; k++) {
   	var friendFirst = csvData[k].firstName;
   	var lastContact = csvData[k].numMonthsSinceContact;
+	
 	var customTemplate = ejs.render(emailTemplate, {
         firstName: firstName,  
      	numMonthsSinceContact: numMonthsSinceContact,

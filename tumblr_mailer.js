@@ -44,8 +44,9 @@ client.posts('deuWhile.tumblr.com', function(err, blog){
 
   function within7Days() {
   	var recent = [];
-  	for (var j = 0; j < posts.length; j++) {
-
+  	for (var j = 0; j < allPosts.length; j++) {
+  		var currentDate = new Date();
+  		
   	} 
   }
 
@@ -61,6 +62,9 @@ client.posts('deuWhile.tumblr.com', function(err, blog){
 	console.log(customTemplate);
 	}
 });
+
+
+
 
 //var fs = require('fs');
 
